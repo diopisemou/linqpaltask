@@ -1,17 +1,17 @@
-import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { ApiService } from './shared/api.service';
+import { ApiService } from 'src/app/shared/api.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
+export class HomeComponent implements OnInit {
 
-export class AppComponent {
   opened = true;
   @ViewChild('sidenav') sidenav: MatSidenav;
-
+  
   constructor(public authService: ApiService) { }
 
   ngOnInit() {
@@ -48,4 +48,5 @@ export class AppComponent {
   logout() {
     this.authService.doLogout()
   }
+
 }

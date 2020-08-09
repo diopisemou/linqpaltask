@@ -1,0 +1,19 @@
+<mat-sidenav-container>
+    <!-- Sidenav -->
+    <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
+      [fixedTopGap]>
+      <mat-nav-list>
+        <a mat-list-item routerLinkActive="active" routerLink="/home/register">
+          <mat-icon>add</mat-icon> Add User
+        </a>
+        <a mat-list-item routerLinkActive="active" routerLink="/admin/list-user">
+          <mat-icon>format_list_bulleted</mat-icon> View Users
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <!-- Main content -->
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
