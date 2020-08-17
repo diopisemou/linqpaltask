@@ -1,19 +1,20 @@
-<mat-sidenav-container>
-    <!-- Sidenav -->
-    <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
-      [fixedTopGap]>
-      <mat-nav-list>
-        <a mat-list-item routerLinkActive="active" routerLink="/home/register">
-          <mat-icon>add</mat-icon> Add User
-        </a>
-        <a mat-list-item routerLinkActive="active" routerLink="/admin/list-user">
-          <mat-icon>format_list_bulleted</mat-icon> View Users
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Welcome to LinqPal</mat-card-title>
+    </mat-card-header>
   
-    <!-- Main content -->
-    <mat-sidenav-content>
-        <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+      <mat-card-content>
+          <h3>Linq Pal is a new mindblowing app that will change the world of finance</h3>
+          
+      </mat-card-content>
+  
+      <button mat-stroked-button color="accent" 
+      class="btn-block align-center" (click)="goToRegister()" >
+       Regiser to be part of a exciting adventure</button>
+      
+    
+  </mat-card>
+</div>
+
+  

@@ -1,0 +1,37 @@
+<!-- Toolbar -->
+<mat-toolbar color="primary" class="header">
+  
+  <ng-container *ngIf="this.authService.isLoggedIn" >
+    
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon (click)="toggleEventClick()" class="hamburger" >menu</mat-icon>
+    </button>
+  </ng-container>
+
+  <span>Linq Pal</span>
+  <span class="example-spacer"></span>
+
+  <button routerLinkActive="active" routerLink="/main/home" matTooltip="Home"
+  [matTooltipPosition]="position.value" mat-button  mat-icon-button class="example-icon" >
+     <mat-icon>home</mat-icon>
+  </button>
+
+  <button *ngIf="!this.authService.isLoggedIn" routerLinkActive="active" routerLink="/log-in" matTooltip="Log In"
+  [matTooltipPosition]="position.value" mat-button  mat-icon-button class="example-icon" >
+     <mat-icon>login</mat-icon>  
+  </button>
+ 
+  <button routerLinkActive="active" routerLink="/admin/list-user" *ngIf="this.authService.isLoggedIn" matTooltip="Dashboard"
+  [matTooltipPosition]="position.value" mat-button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+     <mat-icon>dashboard</mat-icon>
+  </button>
+
+  <button (click)="logout()" *ngIf="this.authService.isLoggedIn" matTooltip="Log Out"
+  [matTooltipPosition]="position.value" mat-button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+     <mat-icon>logout</mat-icon>
+  </button>
+
+
+
+</mat-toolbar>
+

@@ -6,16 +6,38 @@ import { HomeRegisterComponent } from './components/home/home-register/home-regi
 import { HomeDetailComponent } from './components/home/home-detail/home-detail.component';
 import { AuthGuard } from "./shared/auth.guard";
 import { SigninComponent } from './components/signin/signin/signin.component';
+import { HomeLayoutComponent } from './components/layouts/home-layout/home-layout.component';
+import { LoginLayoutComponent } from './components/layouts/login-layout/login-layout.component';
+import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-layout.component';
+import { AdminRegisterComponent } from './components/admin/admin-register/admin-register.component';
+import { ListAdminComponent } from './components/admin/list-admin/list-admin.component';
+
+
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'add-student' },
-  { path: 'admin/list-user', component: ListUserComponent, canActivate: [AuthGuard] },
-  { path: 'admin/add-user', component: HomeRegisterComponent, canActivate: [AuthGuard] },
-  { path: 'admin/detail-user/:id', component: HomeDetailComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: HomeComponent },
-  { path: 'home/register', component: HomeRegisterComponent },
-  { path: 'log-in', component: SigninComponent },
-
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  {
+    path: 'log-in', component: LoginLayoutComponent,
+    children: [
+      {path: '', component: SigninComponent}
+    ]
+  },
+  { path: 'main', component: HomeLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: 'register', component: HomeRegisterComponent }
+    ]
+  },
+  { path: 'admin', component: AdminLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'admin', pathMatch: 'full' },
+      { path: 'list-user', component: ListUserComponent, canActivate: [AuthGuard] },
+      { path: 'list-admin', component: ListAdminComponent, canActivate: [AuthGuard] },
+      { path: 'add-admin', component: AdminRegisterComponent, canActivate: [AuthGuard] },
+      { path: 'detail-user/:id', component: HomeDetailComponent, canActivate: [AuthGuard] }
+    ]
+  },
 ];
 
 @NgModule({

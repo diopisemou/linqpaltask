@@ -11,12 +11,12 @@ export interface Subject {
 }
 
 @Component({
-  selector: 'app-home-register',
-  templateUrl: './home-register.component.html',
-  styleUrls: ['./home-register.component.css']
+  selector: 'app-admin-register',
+  templateUrl: './admin-register.component.html',
+  styleUrls: ['./admin-register.component.css']
 })
 
-export class HomeRegisterComponent implements OnInit {
+export class AdminRegisterComponent implements OnInit {
 
   visible = true;
   selectable = true;
@@ -26,8 +26,6 @@ export class HomeRegisterComponent implements OnInit {
   @ViewChild('resetUserForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   userForm: FormGroup;
-  // subjectArray: Subject[] = [];
-  // SectioinArray: any = ['A', 'B', 'C', 'D', 'E'];
 
   ngOnInit() {
     this.submitBookForm();
@@ -46,7 +44,8 @@ export class HomeRegisterComponent implements OnInit {
     this.userForm = this.fb.group({
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
-      user_email: ['', [Validators.required]],
+      admin_email: ['', [Validators.required]],
+      admin_password: ['', [Validators.required]],
       fulladdress: ['', [Validators.required]],
       ssn: ['', [Validators.required]],
       dob: ['', [Validators.required]],
@@ -54,28 +53,7 @@ export class HomeRegisterComponent implements OnInit {
     })
   }
 
-  // /* Add dynamic languages */
-  // add(event: MatChipInputEvent): void {
-  //   const input = event.input;
-  //   const value = event.value;
-  //   // Add language
-  //   if ((value || '').trim() && this.subjectArray.length < 5) {
-  //     this.subjectArray.push({ name: value.trim() })
-  //   }
-  //   // Reset the input value
-  //   if (input) {
-  //     input.value = '';
-  //   }
-  // }
-
-  // /* Remove dynamic languages */
-  // remove(subject: Subject): void {
-  //   const index = this.subjectArray.indexOf(subject);
-  //   if (index >= 0) {
-  //     this.subjectArray.splice(index, 1);
-  //   }
-  // }  
-
+  
   /* Date */
   formatDate(e) {
     var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
@@ -92,9 +70,9 @@ export class HomeRegisterComponent implements OnInit {
   /* Submit book */
   submitUserForm() {
     if (this.userForm.valid) {
-      this.userApi.AddUser(this.userForm.value).subscribe(res => {
+      this.userApi.AddAdmin(this.userForm.value).subscribe(res => {
         console.log(res);
-        if (res.message == "User successfully created!" && res.result._id != null && res.sucesslogin == true) {
+        if (res.message == "Admin successfully created!" && res.result._id != null && res.sucesslogin == true) {
           this.successNotification();
         } else {
           this.errorNotification(res.message)
@@ -108,11 +86,11 @@ export class HomeRegisterComponent implements OnInit {
   successNotification(){
     Swal.fire({
       title: 'Hi',
-      text: 'User Succesfully added',
+      text: 'Admin Succesfully added',
       icon: 'success',
       confirmButtonText: 'OK',
     }).then((result) => {
-      this.ngZone.run(() => this.router.navigateByUrl('/admin/list-user'))
+      this.ngZone.run(() => this.router.navigateByUrl('/admin/list-admin'))
     })
   } 
 

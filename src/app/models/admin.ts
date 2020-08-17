@@ -7,4 +7,5 @@ export class Admin {
     fulladdress: String;
     ssn: String;
     dob: Date;
+    gender: String;
  }

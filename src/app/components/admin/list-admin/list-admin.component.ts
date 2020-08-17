@@ -7,11 +7,11 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 
 @Component({
-  selector: 'app-list-user',
-  templateUrl: './list-user.component.html',
-  styleUrls: ['./list-user.component.css']
+  selector: 'app-list-admin',
+  templateUrl: './list-admin.component.html',
+  styleUrls: ['./list-admin.component.css']
 })
-export class ListUserComponent implements OnInit {
+export class ListAdminComponent implements OnInit {
 
   UserData: any = [];
   dataSource: MatTableDataSource<User>;
@@ -20,7 +20,7 @@ export class ListUserComponent implements OnInit {
   
 
   constructor(private userApi: ApiService) {
-    this.userApi.GetUsers().subscribe(data => {
+    this.userApi.GetAdmins().subscribe(data => {
       this.UserData = data;
       this.dataSource = new MatTableDataSource<User>(this.UserData);
       setTimeout(() => {

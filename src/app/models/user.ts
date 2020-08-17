@@ -6,4 +6,5 @@ export class User {
     fulladdress: String;
     ssn: String;
     dob: Date;
+    gender: String;
  }

@@ -20,6 +20,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 //import {  } from '@angular/material/';
@@ -67,6 +68,7 @@ import { MatCardModule } from '@angular/material/card';
    ],
    providers: [
       MatDatepickerModule,
+      MatSnackBar
    ]
 })
 

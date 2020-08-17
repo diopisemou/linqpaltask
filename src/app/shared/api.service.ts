@@ -39,12 +39,26 @@ export class ApiService {
   }
 
   // Add user
+  AddAdmin(data: User): Observable<any> {
+    let API_URL = `${this.endpoint}/register-admin`;
+    return this.http.post(API_URL, data)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  // Add user
   AddUser(data: User): Observable<any> {
     let API_URL = `${this.endpoint}/add-user`;
     return this.http.post(API_URL, data)
       .pipe(
         catchError(this.handleError)
       )
+  }
+
+  // Get all users
+  GetAdmins() {
+    return this.http.get(`${this.endpoint}/admins`);
   }
 
   // Get all users
@@ -83,12 +97,31 @@ export class ApiService {
   }
 
    // Sign-up
-   signUp(user: User): Observable<any> {
-    let api = `${this.endpoint}/register-user`;
-    return this.http.post(api, user)
-      .pipe(
-        catchError(this.handleError)
-      )
+  //  signUp(user: User): Observable<any> {
+  //   let api = `${this.endpoint}/register-user`;
+  //   return this.http.post(api, user)
+  //     .pipe(
+  //       catchError(this.handleError)
+  //     )
+  // }
+
+  signInAdmin(user: Admin) {
+    return this.http.post<any>(`${this.endpoint}/signin`, user)
+      .subscribe((res: any) => {
+        localStorage.setItem('access_token', res.token)
+        if (user.admin_email == "adminuser@linqpal.com" && user.admin_password == "123456789" ) {
+          Swal.fire('Hi', 'Login Successful !', 'success');
+            this.router.navigate(['/admin/list-user/'], { replaceUrl: true });
+          
+        } else {
+          this.getUserProfile(res._id).subscribe((res) => {
+            this.currentUser = res;
+            Swal.fire('Hi', 'Login Successful !', 'success')
+            //this.router.navigate(['/main/home'], { replaceUrl: true });
+            this.router.navigate(['/admin/list-user/'], { replaceUrl: true });
+          })
+        }
+      })
   }
 
   // Sign-in
@@ -99,8 +132,8 @@ export class ApiService {
         this.getUserProfile(res._id).subscribe((res) => {
           this.currentUser = res;
           Swal.fire('Hi', 'Login Successful !', 'success')
-          this.router.navigate(['/home'], { replaceUrl: true });
-          //this.router.navigate(['/admin/list-user/'], { replaceUrl: true });
+          //this.router.navigate(['/main/home'], { replaceUrl: true });
+          this.router.navigate(['/admin/list-user/'], { replaceUrl: true });
         })
       })
   }
@@ -117,7 +150,8 @@ export class ApiService {
   doLogout() {
     let removeToken = localStorage.removeItem('access_token');
     if (removeToken == null) {
-      this.router.navigate(['log-in']);
+      this.router.navigate(['/main/home']);
+      //this.router.navigate(['log-in']);
     }
   }
 

@@ -11,7 +11,7 @@
             <mat-card class="box">
 
               <mat-card-header>
-                <mat-card-title>  Register for future launch </mat-card-title>
+                <mat-card-title>  Add New Admin User  </mat-card-title>
               </mat-card-header>
 
               <mat-card-content>
@@ -35,11 +35,19 @@
           
                   <!-- Email -->
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email" formControlName="user_email">
+                    <input matInput placeholder="Email" formControlName="admin_email">
                     <mat-error *ngIf="handleError('user_email', 'required')">
                       You must provide an<strong> email</strong>
                     </mat-error>
                   </mat-form-field>
+
+                   <!-- Password -->
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Password" type="password" formControlName="admin_password">
+                  <mat-error *ngIf="handleError('admin_password', 'required')">
+                    You must provide a <strong> password </strong>
+                  </mat-error>
+                </mat-form-field>
           
                   <!-- Address -->
                   <mat-form-field class="example-full-width">

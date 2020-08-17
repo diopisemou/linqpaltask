@@ -33,6 +33,6 @@ export class SigninComponent implements OnInit {
   }
 
   loginUser() {
-    this.authService.signIn(this.signinForm.value)
+    this.authService.signInAdmin(this.signinForm.value)
   }
 }

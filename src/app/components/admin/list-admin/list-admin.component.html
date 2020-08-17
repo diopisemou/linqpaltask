@@ -3,7 +3,7 @@
         <!-- Title group  -->
         <div class="title-group">
             <div class="row">
-                <h1 class="mat-h2">Users List</h1>
+                <h1 class="mat-h2">Admin List</h1>
             </div>
             
             <div class="row ">
@@ -50,8 +50,6 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                     <td mat-cell *matCellDef="let element; let i = index;">
-                    <!-- <button mat-raised-button color="primary" class="push-right"
-                        [routerLink]="['/edit-user/', element._id]">Edit</button> -->
                     <button mat-raised-button color="primary" class="push-right"
                         [routerLink]="['/admin/detail-user/', element._id]">View</button>
                     <button mat-raised-button color="accent" (click)="deleteUser(i, element)">Delete</button>

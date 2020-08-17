@@ -1,0 +1,32 @@
+<app-toolbar (toggleEvent)='updateData($event)' ></app-toolbar>
+
+
+<mat-sidenav-container>
+  <!-- Sidenav -->
+  <mat-sidenav id="sidenav" #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
+    [fixedTopGap]="fixedTopGap">
+    <mat-nav-list>
+      <a mat-list-item routerLinkActive="active" routerLink="/admin/add-admin">
+        <mat-icon>add</mat-icon> Add Admin
+      </a>
+      <a >
+        <span class="example-spacer"></span>
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/admin/list-user">
+        <mat-icon>format_list_bulleted</mat-icon> View Users
+      </a>
+      <a >
+        <span class="example-spacer"></span>
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/admin/list-admin">
+        <mat-icon>format_list_bulleted</mat-icon> View Admins
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main content -->
+  <mat-sidenav-content>
+      <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

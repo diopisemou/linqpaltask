@@ -107,11 +107,7 @@ export class HomeDetailComponent implements OnInit {
     })
   }  
 
-  /* Get errors */
-  public handleError = (controlName: string, errorName: string) => {
-    return this.userForm.controls[controlName].hasError(errorName);
-  }  
-
+ 
   /* Submit book */
   submitUserForm() {
     

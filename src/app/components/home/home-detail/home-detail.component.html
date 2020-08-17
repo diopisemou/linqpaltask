@@ -1,86 +1,88 @@
-<!-- Title group  -->
-<div class="title-group">
-    <h1 class="mat-h1">Detail User</h1>
-    <mat-divider fxFlex="1 0"></mat-divider>
-  </div>
-  
-  <!-- Form -->
-  <div class="inner-wrapper">
-    <form [formGroup]="userForm" (ngSubmit)="submitUserForm()" #resetUserForm="ngForm" novalidate>
-      <!-- Left block -->
-      <mat-card>
-        <div class="controlers-wrapper">
-            
-          <!-- First Name -->
-          <mat-form-field class="example-full-width">
-            <input matInput disabled readonly formControlName="first_name">
-            <mat-error *ngIf="handleError('first_name', 'required')">
-              You must provide a<strong>first name</strong>
-            </mat-error>
-          </mat-form-field>
 
-          <!-- Last Name -->
-          <mat-form-field class="example-full-width">
-            <input matInput disabled readonly formControlName="last_name">
-            <mat-error *ngIf="handleError('last_name', 'required')">
-              You must provide a<strong>last name</strong>
-            </mat-error>
-          </mat-form-field>
-  
-          <!-- Email -->
-          <mat-form-field class="example-full-width">
-            <input matInput disabled readonly formControlName="user_email">
-            <mat-error *ngIf="handleError('user_email', 'required')">
-              You must provide an<strong> email</strong>
-            </mat-error>
-          </mat-form-field>
+<div class="container">
+  <div class="row">
 
-          <!-- Address -->
-          <mat-form-field class="example-full-width">
-            <input matInput disabled readonly formControlName="fulladdress">
-            <mat-error *ngIf="handleError('fulladdress', 'required')">
-              You must provide an<strong> address </strong>
-            </mat-error>
-          </mat-form-field>
-  
-         
-
+      <!-- Title group  -->
+      <div class="title-group">
+        <div class="row">
+          <h1 class="mat-h1">Detail User</h1>
         </div>
-      </mat-card>
-  
-      <!-- Right block -->
-      <mat-card>
-        <div class="controlers-wrapper">
+        <div class="row ">
+          <mat-divider  fxFlex="1 0"></mat-divider>
+          <br>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <!-- Form -->
+    <div class="inner-wrapper">
+      <form [formGroup]="userForm" (ngSubmit)="submitUserForm()" #resetUserForm="ngForm" novalidate>
+        <!-- Left block -->
+        <mat-card>
+          <div class="controlers-wrapper">
+              
+            <!-- First Name -->
+            <mat-form-field class="example-full-width">
+              <mat-label>First Name</mat-label>
+              <input matInput disabled readonly formControlName="first_name">
+            </mat-form-field>
+
+            <!-- Last Name -->
+            <mat-form-field class="example-full-width">
+              <mat-label>Last Name</mat-label>
+              <input matInput disabled readonly formControlName="last_name">
+              
+            </mat-form-field>
+
+            <!-- Email -->
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input matInput disabled readonly formControlName="user_email">
+              
+            </mat-form-field>
+
+            <!-- Address -->
+            <mat-form-field class="example-full-width">
+              <mat-label> Address </mat-label>
+              <input matInput disabled readonly formControlName="fulladdress">
+              
+            </mat-form-field>
+
           
-            <!-- SSN -->
-          <mat-form-field class="example-full-width">
-            <input matInput readonly disabled formControlName="ssn">
-            <mat-error *ngIf="handleError('ssn', 'required')">
-              You must provide an<strong> email</strong>
-            </mat-error>
-          </mat-form-field>
 
-          <!-- Date of birth -->
-          <mat-form-field>
-            <input matInput readonly [matDatepicker]="picker" formControlName="dob"
-              (dateChange)="formatDate($event)">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="handleError('dob', 'required')">
-              Date of birth is required
-            </mat-error>
-          </mat-form-field>
-  
-          <!-- Gender -->
-          <div class="misc-bottom-padding">
-            <mat-label>Gender:</mat-label>
-            <mat-radio-group aria-label="Select an option" formControlName="gender">
-              <mat-radio-button value="Male">Male</mat-radio-button>
-              <mat-radio-button value="Female">Female</mat-radio-button>
-            </mat-radio-group>
           </div>
-        </div>
-      </mat-card>
+        </mat-card>
 
-    </form>
+        <!-- Right block -->
+        <mat-card>
+          <div class="controlers-wrapper">
+            
+              <!-- SSN -->
+            <mat-form-field class="example-full-width">
+              <input matInput readonly disabled formControlName="ssn">
+              
+            </mat-form-field>
+
+            <!-- Date of birth -->
+            <mat-form-field>
+              <mat-label>Date of Birth</mat-label>
+              <input matInput disabled readonly [matDatepicker]="picker" formControlName="dob"
+                (dateChange)="formatDate($event)">
+              <mat-datepicker-toggle readonly matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker readonly #picker></mat-datepicker>
+              
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Gender</mat-label>
+              <input matInput readonly disabled formControlName="gender">
+            </mat-form-field>
+
+          </div>
+        </mat-card>
+
+      </form>
+    </div>
   </div>
+</div>
+      
