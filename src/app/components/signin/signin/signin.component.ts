@@ -27,9 +27,9 @@ export class SigninComponent implements OnInit {
       admin_password: ['']
     })
   }
-
+  
   ngOnInit() { 
-    //this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/game';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/main/home';
   }
 
   loginUser() {
