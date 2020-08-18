@@ -60,7 +60,7 @@ export class ListUserComponent implements OnInit {
               'warning'
             );
           } 
-        });
+        }, err => Swal.fire('Hi',  err, 'warning'));
         
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(

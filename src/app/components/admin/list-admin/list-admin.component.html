@@ -37,9 +37,9 @@
                     <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="user_email">
+                <ng-container matColumnDef="admin_email">
                     <th mat-header-cell *matHeaderCellDef> Email </th>
-                    <td mat-cell *matCellDef="let element"> {{element.user_email}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.admin_email}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="fulladdress">
@@ -50,8 +50,7 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                     <td mat-cell *matCellDef="let element; let i = index;">
-                    <button mat-raised-button color="primary" class="push-right"
-                        [routerLink]="['/admin/detail-user/', element._id]">View</button>
+                    
                     <button mat-raised-button color="accent" (click)="deleteUser(i, element)">Delete</button>
                     </td>
                 </ng-container>

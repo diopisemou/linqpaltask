@@ -12,8 +12,6 @@ import { ApiService } from 'src/app/shared/api.service';
 export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   public loginInvalid: boolean;
-  private formSubmitAttempt: boolean;
-  private returnUrl: string;
 
 
 
@@ -28,9 +26,7 @@ export class SigninComponent implements OnInit {
     })
   }
   
-  ngOnInit() { 
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/main/home';
-  }
+  ngOnInit() { }
 
   loginUser() {
     this.authService.signInAdmin(this.signinForm.value)

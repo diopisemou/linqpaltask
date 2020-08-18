@@ -3,7 +3,6 @@ import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ApiService } from '../../../shared/api.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { MatChipInputEvent } from '@angular/material/chips';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 export interface Subject {
@@ -26,8 +25,6 @@ export class HomeRegisterComponent implements OnInit {
   @ViewChild('resetUserForm') myNgForm;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   userForm: FormGroup;
-  // subjectArray: Subject[] = [];
-  // SectioinArray: any = ['A', 'B', 'C', 'D', 'E'];
 
   ngOnInit() {
     this.submitBookForm();
@@ -54,27 +51,6 @@ export class HomeRegisterComponent implements OnInit {
     })
   }
 
-  // /* Add dynamic languages */
-  // add(event: MatChipInputEvent): void {
-  //   const input = event.input;
-  //   const value = event.value;
-  //   // Add language
-  //   if ((value || '').trim() && this.subjectArray.length < 5) {
-  //     this.subjectArray.push({ name: value.trim() })
-  //   }
-  //   // Reset the input value
-  //   if (input) {
-  //     input.value = '';
-  //   }
-  // }
-
-  // /* Remove dynamic languages */
-  // remove(subject: Subject): void {
-  //   const index = this.subjectArray.indexOf(subject);
-  //   if (index >= 0) {
-  //     this.subjectArray.splice(index, 1);
-  //   }
-  // }  
 
   /* Date */
   formatDate(e) {
@@ -94,13 +70,13 @@ export class HomeRegisterComponent implements OnInit {
     if (this.userForm.valid) {
       this.userApi.AddUser(this.userForm.value).subscribe(res => {
         console.log(res);
-        if (res.message == "User successfully created!" && res.result._id != null && res.sucesslogin == true) {
+        if (res.result._id != null && res.sucesslogin == true) {
           this.successNotification();
         } else {
           this.errorNotification(res.message)
         }
         
-      });
+      }, err => Swal.fire('Hi',  err, 'warning'));
     }
   }
 
@@ -111,7 +87,7 @@ export class HomeRegisterComponent implements OnInit {
       text: 'User Succesfully added',
       icon: 'success',
       confirmButtonText: 'OK',
-    }).then((result) => {
+    }).then(() => {
       this.ngZone.run(() => this.router.navigateByUrl('/admin/list-user'))
     })
   } 
@@ -122,7 +98,7 @@ export class HomeRegisterComponent implements OnInit {
       text: message,
       icon: 'warning',
       confirmButtonText: 'OK',
-    }).then((result) => {
+    }).then(() => {
       
     })
   } 

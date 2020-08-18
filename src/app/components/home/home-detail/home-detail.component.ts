@@ -4,7 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ApiService } from '../../../shared/api.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 export interface Subject {
   name: string;
@@ -51,11 +51,11 @@ export class HomeDetailComponent implements OnInit {
           gender: [data.gender]
         })
       } else {
-        //this.openSnackBar("User Not Found", "OK");
         //this.ngZone.run(() => this.router.navigateByUrl('/admin/list-user'));
+        this.ngZone.run(() => this.router.navigateByUrl('/main/home'));
       } 
 
-    })    
+    }, err => Swal.fire('Hi',  err, 'warning'))    
   }
 
   openSnackBar(message: string, action: string) {
@@ -76,28 +76,7 @@ export class HomeDetailComponent implements OnInit {
       gender: ['Male']
     })
   }
-
-  // /* Add dynamic languages */
-  // add(event: MatChipInputEvent): void {
-  //   const input = event.input;
-  //   const value = event.value;
-  //   // Add language
-  //   if ((value || '').trim() && this.subjectArray.length < 5) {
-  //     this.subjectArray.push({ name: value.trim() })
-  //   }
-  //   // Reset the input value
-  //   if (input) {
-  //     input.value = '';
-  //   }
-  // }
-
-  // /* Remove dynamic languages */
-  // remove(subject: Subject): void {
-  //   const index = this.subjectArray.indexOf(subject);
-  //   if (index >= 0) {
-  //     this.subjectArray.splice(index, 1);
-  //   }
-  // }  
+ 
 
   /* Date */
   formatDate(e) {
@@ -107,10 +86,11 @@ export class HomeDetailComponent implements OnInit {
     })
   }  
 
- 
   /* Submit book */
   submitUserForm() {
     
   }
+
+
 
 }

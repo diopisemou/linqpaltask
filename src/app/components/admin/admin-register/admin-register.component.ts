@@ -3,7 +3,6 @@ import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ApiService } from '../../../shared/api.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { MatChipInputEvent } from '@angular/material/chips';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 export interface Subject {
@@ -48,8 +47,6 @@ export class AdminRegisterComponent implements OnInit {
       admin_password: ['', [Validators.required]],
       fulladdress: ['', [Validators.required]],
       ssn: ['', [Validators.required]],
-      dob: ['', [Validators.required]],
-      gender: ['Male']
     })
   }
 
@@ -71,14 +68,14 @@ export class AdminRegisterComponent implements OnInit {
   submitUserForm() {
     if (this.userForm.valid) {
       this.userApi.AddAdmin(this.userForm.value).subscribe(res => {
-        console.log(res);
-        if (res.message == "Admin successfully created!" && res.result._id != null && res.sucesslogin == true) {
+        if (res.result._id != null && res.sucesslogin == true) {
           this.successNotification();
+          this.userForm.reset();
         } else {
           this.errorNotification(res.message)
         }
         
-      });
+      }, err => Swal.fire('Hi',  err, 'warning'));
     }
   }
 
@@ -89,7 +86,7 @@ export class AdminRegisterComponent implements OnInit {
       text: 'Admin Succesfully added',
       icon: 'success',
       confirmButtonText: 'OK',
-    }).then((result) => {
+    }).then(() => {
       this.ngZone.run(() => this.router.navigateByUrl('/admin/list-admin'))
     })
   } 
@@ -97,10 +94,10 @@ export class AdminRegisterComponent implements OnInit {
   errorNotification(message){
     Swal.fire({
       title: 'Hi',
-      text: message,
+      text: message.contains("Error Code: 422") ? "Email Already Exist" : message ,
       icon: 'warning',
       confirmButtonText: 'OK',
-    }).then((result) => {
+    }).then(() => {
       
     })
   } 

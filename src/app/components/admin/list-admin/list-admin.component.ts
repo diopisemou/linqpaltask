@@ -16,7 +16,7 @@ export class ListAdminComponent implements OnInit {
   UserData: any = [];
   dataSource: MatTableDataSource<User>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ['_id', 'first_name', 'last_name', 'user_email', 'fulladdress', 'action'];
+  displayedColumns: string[] = ['_id', 'first_name', 'last_name', 'admin_email', 'fulladdress', 'action'];
   
 
   constructor(private userApi: ApiService) {
@@ -42,7 +42,7 @@ export class ListAdminComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         
-        this.userApi.DeleteUser(e._id).subscribe(res => {
+        this.userApi.DeleteAdminUser(e._id).subscribe(res => {
           console.log(res);
           if (res.msg != null && res.sucessdelete == true) {
             const data = this.dataSource.data;
@@ -60,7 +60,7 @@ export class ListAdminComponent implements OnInit {
               'warning'
             );
           } 
-        });
+        }, err => Swal.fire('Hi',  err, 'warning'));
         
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(

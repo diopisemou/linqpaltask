@@ -36,7 +36,7 @@
                   <!-- Email -->
                   <mat-form-field class="example-full-width">
                     <input matInput placeholder="Email" formControlName="admin_email">
-                    <mat-error *ngIf="handleError('user_email', 'required')">
+                    <mat-error *ngIf="handleError('admin_email', 'required')">
                       You must provide an<strong> email</strong>
                     </mat-error>
                   </mat-form-field>
@@ -70,25 +70,9 @@
                   </mat-error>
                 </mat-form-field>
         
-                <!-- Date of birth -->
-                <mat-form-field>
-                  <input matInput readonly [matDatepicker]="picker" placeholder="Date of birth" formControlName="dob"
-                    (dateChange)="formatDate($event)">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                  <mat-error *ngIf="handleError('dob', 'required')">
-                    Date of birth is required
-                  </mat-error>
-                </mat-form-field>
+                
         
-                <!-- Gender -->
-                <div class="misc-bottom-padding">
-                  <mat-label>Gender:</mat-label>
-                  <mat-radio-group aria-label="Select an option" formControlName="gender">
-                    <mat-radio-button value="Male">Male</mat-radio-button>
-                    <mat-radio-button value="Female">Female</mat-radio-button>
-                  </mat-radio-group>
-                </div>
+               
         
                 
         

@@ -88,6 +88,15 @@ export class ApiService {
   // }
 
   // Delete user
+  DeleteAdminUser(id): Observable<any> {
+    var API_URL = `${this.endpoint}/delete-admin/${id}`;
+    return this.http.delete(API_URL)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  // Delete user
   DeleteUser(id): Observable<any> {
     var API_URL = `${this.endpoint}/delete-user/${id}`;
     return this.http.delete(API_URL)
@@ -96,14 +105,6 @@ export class ApiService {
       )
   }
 
-   // Sign-up
-  //  signUp(user: User): Observable<any> {
-  //   let api = `${this.endpoint}/register-user`;
-  //   return this.http.post(api, user)
-  //     .pipe(
-  //       catchError(this.handleError)
-  //     )
-  // }
 
   signInAdmin(user: Admin) {
     return this.http.post<any>(`${this.endpoint}/signin`, user)
