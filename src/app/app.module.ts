@@ -12,9 +12,9 @@ import { ListAdminComponent } from './components/admin/list-admin/list-admin.com
 import { HomeDetailComponent } from './components/home/home-detail/home-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { ApiService } from './shared/api.service';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { SigninComponent } from './components/signin/signin/signin.component';
 import { AuthInterceptor } from './shared/authconfig.interceptor';
 import { ToolbarComponent } from './components/layouts/toolbar/toolbar.component';
@@ -51,6 +51,8 @@ import { NavigationComponent } from './components/layouts/navigation/navigation.
     FlexLayoutModule
   ],
   providers: [
+    HttpClient,
+    FormBuilder,
     ApiService,
     {
       provide: HTTP_INTERCEPTORS,
